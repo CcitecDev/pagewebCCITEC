@@ -1,0 +1,44 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Astro v4.10.1">
+        <meta name="description" content="CCITEC Ingeniería y Tecnología ofrece capacitación en línea especializada en ingeniería eléctrica. Mejora tus habilidades con nuestros cursos innovadores y profesionales experimentados.">
+        <meta name="keywords" content="ingeniería, capacitación, cursos en línea, tecnología, ingeniería eléctrica">
+        <meta name="author" content="CCITEC Ingeniería">
+        <meta name="publisher" content="CCITEC Ingeniería y Tecnología">
+        <meta name="robots" content="index, follow">
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="Ccitec Ingeniería">
+        <meta property="og:description" content="CCITEC Ingeniería y Tecnología ofrece capacitación en línea especializada en ingeniería eléctrica. Mejora tus habilidades con nuestros cursos innovadores y profesionales experimentados.">
+        <meta property="og:image" content="/ogimage.jpg">
+        <meta property="og:url" content="https://ccitecingenieria.web.app/">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="CCITEC Ingeniería y Tecnología">
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://ccitecingenieria.web.app/">
+        <!-- Favicon -->
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+        <!-- Title -->
+        <title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+	html {
+		font-family: "Montserrat", sans-serif;
+		background: #fff;
+	}
+</style>
