@@ -1,0 +1,66 @@
+[debug] [2024-08-22T21:46:29.678Z] ----------------------------------------------------------------------
+[debug] [2024-08-22T21:46:29.681Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ComsLab\Documents\ccitec_web_page\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2024-08-22T21:46:29.682Z] CLI Version:   13.15.2
+[debug] [2024-08-22T21:46:29.682Z] Platform:      win32
+[debug] [2024-08-22T21:46:29.682Z] Node Version:  v20.16.0
+[debug] [2024-08-22T21:46:29.683Z] Time:          Thu Aug 22 2024 16:46:29 GMT-0500 (hora estándar de Perú)
+[debug] [2024-08-22T21:46:29.683Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-08-22T21:46:29.699Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-08-22T21:46:29.831Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-08-22T21:46:29.831Z] > authorizing via signed-in user (ccitectic@gmail.com)
+[debug] [2024-08-22T21:46:29.832Z] [iam] checking project ccitec-pe for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-08-22T21:46:29.832Z] > refreshing access token with scopes: []
+[debug] [2024-08-22T21:46:29.833Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-08-22T21:46:29.833Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-08-22T21:46:30.072Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-08-22T21:46:30.072Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-08-22T21:46:30.081Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/ccitec-pe:testIamPermissions [none]
+[debug] [2024-08-22T21:46:30.081Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/ccitec-pe:testIamPermissions x-goog-quota-user=projects/ccitec-pe
+[debug] [2024-08-22T21:46:30.081Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/ccitec-pe:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-08-22T21:46:30.361Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-08-22T21:46:30.361Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2024-08-22T21:46:31.196Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/ccitec-pe:testIamPermissions 200
+[debug] [2024-08-22T21:46:31.196Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/ccitec-pe:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-08-22T21:46:31.198Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/ccitec-pe [none]
+[debug] [2024-08-22T21:46:31.658Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/ccitec-pe 200
+[debug] [2024-08-22T21:46:31.658Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/ccitec-pe {"projectId":"ccitec-pe","projectNumber":"653168040176","displayName":"ccitec-pe","name":"projects/ccitec-pe","resources":{"hostingSite":"ccitec-pe"},"state":"ACTIVE","etag":"1_d2b70577-4652-4258-8a21-ffdfd7e8291e"}
+[info] 
+   Thank you for trying our experimental support for Astro on Firebase Hosting.
+   While this integration is maintained by Googlers it is not a supported Firebase product.
+   Issues filed on GitHub will be addressed on a best-effort basis by maintainers and other community members.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/frameworks-overview
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-08-22T21:46:55.868Z] [web frameworks] effective firebase.json:  {
+  "hosting": [
+    {
+      "source": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "frameworksBackend": {
+        "region": "us-central1"
+      },
+      "site": "ccitec-pe",
+      "rewrites": [],
+      "redirects": [],
+      "headers": [],
+      "cleanUrls": true,
+      "public": ".firebase\\ccitec-pe\\hosting",
+      "webFramework": "astro"
+    }
+  ]
+}
+[info] 
+[info] === Deploying to 'ccitec-pe'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2024-08-22T21:46:55.880Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/ccitec-pe/versions [none]
+[debug] [2024-08-22T21:46:55.880Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/ccitec-pe/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"astro"}}
