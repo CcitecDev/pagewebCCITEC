@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
 ---
 
 <Layout title="Ccitec Ingenieria">
@@ -39,19 +38,36 @@ import Card from '../components/Card.astro';
 			<span class="btn-login" data-astro-cid-5blmo7yk>Aula Virtual</span>
 		</a>
 	</nav>
-	<main class="flex items-center justify-center pt-14 box-border min-h-[100vh] h-screen" data-astro-cid-37pmanjv>
-		<div class="w-11/12 lg:w-7/12 container mx-auto px-4 flex flex-col items-center justify-center text-center h-full ">
-		  <h1 class="text-5xl md:text-7xl font-bold mb-4 leading-tight">
+	<main class="flex items-center justify-center pt-0 md:pt-14 box-border min-h-[100vh] h-screen" data-astro-cid-37pmanjv>
+		<div class="w-10/12 lg:w-7/12 container mx-auto px-4 flex flex-col items-center justify-center text-center h-full">
+		  <h1 class="text-4xl md:text-7xl font-bold mb-4 leading-tight">
 			Impulsa tu carrera con nuestros <span class="text-[#007cd2cc]">cursos especializados</span>
 		  </h1>
-		  <p class="text-lg md:text-xl mb-8">
+		  <p class="text-base md:text-xl mb-8">
 			Domina las herramientas y conocimientos clave para destacar en tu profesión.
 		  </p>
 		  <a href="#contacto" class="bg-[#007cd2cc] hover:bg-[#007cd2] text-white font-semibold py-3 px-8 rounded-md shadow-lg transition duration-300 ease-in-out">
 			Contáctanos
 		  </a>
+	  
+		  <!-- Sección de estadísticas -->
+		  <section class="w-full flex flex-row items-center justify-center mt-3 md:mt-16 ">
+			<div class="stat-card">
+				<div class="flex flex-row items-center justify-center text-[3rem] font-bold text-[#007cd2cc]"><span>+ </span><div class="stat-number" data-number="120">0</div></div>
+			  <p class="stat-label">Profesionales <br>Capacitados</p>
+			</div>
+			<div class="stat-card">
+			  <div class="flex flex-row items-center justify-center text-[3rem] font-bold text-[#007cd2cc]"><span>+ </span><div class="stat-number" data-number="50">0</div></div>
+			  <p class="stat-label">Cursos <br>Disponibles</p>
+			</div>
+			<div class="stat-card">
+				<div class="flex flex-row items-center justify-center text-[3rem] font-bold text-[#007cd2cc]"><span>+ </span><div class="stat-number" data-number="7">0</div></div>
+			  <p class="stat-label">Años de <br>Experiencia</p>
+			</div>
+		  </section>
 		</div>
 	  </main>
+	  
 	  
 	<script type="module">
 		const e = document.getElementById("controlmenu")
@@ -72,6 +88,31 @@ import Card from '../components/Card.astro';
 		}
 		e && (e.onclick = d);
 		n && (n.onclick = d);
+
+		document.addEventListener('DOMContentLoaded', () => {
+    const statNumbers = document.querySelectorAll('.stat-number');
+
+    statNumbers.forEach((stat) => {
+      const finalValue = parseInt(stat.getAttribute('data-number'), 10);
+      let currentValue = 0;
+      const increment = finalValue / 100;
+      const duration = 2000; // Duración total en ms
+      const steps = 100; // Número de pasos de la animación
+      const stepDuration = duration / steps; // Duración de cada paso en ms
+
+      const updateNumber = () => {
+        if (currentValue < finalValue) {
+          currentValue += increment;
+          stat.textContent = Math.floor(currentValue);
+          setTimeout(updateNumber, stepDuration);
+        } else {
+          stat.textContent = finalValue;
+        }
+      };
+
+      updateNumber();
+    });
+  });
 	</script>
 </Layout>
 
@@ -136,4 +177,40 @@ import Card from '../components/Card.astro';
 	main[data-astro-cid-37pmanjv] {
 		min-height: 100vh
 	}
+
+	.stat-card {
+    text-align: center;
+    flex: 1; /* Makes sure each stat card takes equal space */
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #007cd2cc;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    color: #333;
+  }
+
+  @media (max-width: 640px) {
+    .stat-card {
+      width: 100%;
+    }
+
+    .stat-card:nth-child(-n+2) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-number {
+      font-size: 2.2rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+    }
+  }
 </style>
