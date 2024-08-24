@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-
 <Layout title="Ccitec Ingenieria">
 	<nav class="h-14 flex items-center w-full justify-between fixed top-0 px-4 md:px-8 bg-white shadow-md z-50" data-astro-cid-5blmo7yk>
 		<button class="md:hidden flex items-center" id="controlmenu" aria-label="Menú" data-astro-cid-5blmo7yk>
@@ -38,39 +37,53 @@ import Layout from '../layouts/Layout.astro';
 			<span class="btn-login" data-astro-cid-5blmo7yk>Aula Virtual</span>
 		</a>
 	</nav>
-	<main class="flex items-center justify-center pt-0 md:pt-14 box-border min-h-[100vh] h-screen" data-astro-cid-37pmanjv>
-		<div class="w-10/12 lg:w-7/12 container mx-auto px-4 flex flex-col items-center justify-center text-center h-full">
-		  <h1 class="text-4xl md:text-7xl font-bold mb-4 leading-tight">
-			Impulsa tu carrera con nuestros <span class="text-[#007cd2cc]">cursos especializados</span>
-		  </h1>
-		  <p class="text-base md:text-xl mb-8">
-			Domina las herramientas y conocimientos clave para destacar en tu profesión.
-		  </p>
-		  <a href="#contacto" class="bg-[#007cd2cc] hover:bg-[#007cd2] text-white font-semibold py-3 px-8 rounded-md shadow-lg transition duration-300 ease-in-out">
-			Contáctanos
-		  </a>
-	  
-		  <!-- Sección de estadísticas -->
-		  <section class="w-full flex flex-row items-center justify-center mt-3 md:mt-16 ">
-			<div class="stat-card">
-				<div class="flex flex-row items-center justify-center text-[3rem] font-bold text-[#007cd2cc]"><span>+ </span><div class="stat-number" data-number="120">0</div></div>
-			  <p class="stat-label">Profesionales <br>Capacitados</p>
-			</div>
-			<div class="stat-card">
-			  <div class="flex flex-row items-center justify-center text-[3rem] font-bold text-[#007cd2cc]"><span>+ </span><div class="stat-number" data-number="50">0</div></div>
-			  <p class="stat-label">Cursos <br>Disponibles</p>
-			</div>
-			<div class="stat-card">
-				<div class="flex flex-row items-center justify-center text-[3rem] font-bold text-[#007cd2cc]"><span>+ </span><div class="stat-number" data-number="7">0</div></div>
-			  <p class="stat-label">Años de <br>Experiencia</p>
-			</div>
-		  </section>
-		</div>
-	  </main>
-	  
-	  
-	<script type="module">
-		const e = document.getElementById("controlmenu")
+  <main class="flex items-center justify-center pt-0 md:pt-14 box-border min-h-[100vh] h-screen">
+    <div class="w-10/12 lg:w-7/12 container mx-auto px-4 flex flex-col items-center justify-center text-center h-full">
+      <h1 class="text-4xl md:text-7xl font-bold mb-4 leading-tight">
+        Impulsa tu carrera con nuestros <span class="text-[#007cd2cc]">cursos especializados</span>
+      </h1>
+      <p class="text-base md:text-xl mb-8">
+        Domina las herramientas y conocimientos clave para destacar en tu profesión.
+      </p>
+      
+      <!-- Formulario de suscripción -->
+      <div class="flex flex-col w-full max-w-md">
+        <form id="subscription-form" class="flex flex-row">
+          <input 
+            type="email" 
+            name="Email" 
+            placeholder="Ingresa tu correo electrónico" 
+            required
+            class="w-full mr-6 border border-gray-300 rounded pl-3 text-sm md:text-base"
+          >
+          <button 
+            type="submit" 
+            class="w-fit p-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 text-sm md:text-base"
+          >
+            Suscribirse
+          </button>
+        </form>
+      </div>
+  
+      <section class="w-full flex flex-row items-center justify-center mt-3 md:mt-16">
+        <div class="stat-card">
+          <div class="flex flex-row items-center justify-center text-[3rem] font-bold text-[#007cd2cc]"><span>+ </span><div class="stat-number" data-number="120">0</div></div>
+          <p class="stat-label">Profesionales <br>Capacitados</p>
+        </div>
+        <div class="stat-card">
+          <div class="flex flex-row items-center justify-center text-[3rem] font-bold text-[#007cd2cc]"><span>+ </span><div class="stat-number" data-number="50">0</div></div>
+          <p class="stat-label">Cursos <br>Disponibles</p>
+        </div>
+        <div class="stat-card">
+          <div class="flex flex-row items-center justify-center text-[3rem] font-bold text-[#007cd2cc]"><span>+ </span><div class="stat-number" data-number="7">0</div></div>
+          <p class="stat-label">Años de <br>Experiencia</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="module">
+const e = document.getElementById("controlmenu")
 		  , n = document.getElementById("closemenu");
 		function d() {
 			const s = document.getElementById("menu");
@@ -113,7 +126,31 @@ import Layout from '../layouts/Layout.astro';
       updateNumber();
     });
   });
-	</script>
+
+    
+    // Envío del formulario
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwUsHwr2k8zmXCKTkKSNNgwWzouQ1-bcDhhvOioM_xvpD4OTmn2JPyD9nAUSCV_p5ji/exec'
+        const form = document.forms['subscription-form']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response =>{
+				if (response.ok) {
+	response.text().then(text => {
+console.log(text);
+});
+} else {
+	alert('Hubo un error al procesar tu suscripción.');
+}
+}).catch(error => {
+console.error('Error:', error);
+alert('Hubo un error al procesar tu suscripción.');
+})
+			}
+               
+        ) 
+  </script>
 </Layout>
 
 <style>
