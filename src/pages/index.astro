@@ -6,7 +6,7 @@ import Layout from '../layouts/Layout.astro';
 		<div class="p-4 text-center">
 			<p class="text-sm text-gray-800">¡Gracias por suscribirte!</p>
 		</div>
-		<div class="h-1 bg-blue-500 animate-progress"></div>
+		<div class="h-1 bg-gray-800 animate-progress"></div>
 	</div>
 	
 	<nav class="h-14 flex items-center w-full justify-between fixed top-0 px-4 md:px-8 bg-white shadow-md z-50" data-astro-cid-5blmo7yk>
@@ -41,7 +41,7 @@ import Layout from '../layouts/Layout.astro';
 			</button>
 		</ul>
 		<a href="/aulavirtual/login" class="hidden md:flex items-center justify-around text-xs sm:text-sm md:order-3" data-astro-cid-5blmo7yk>
-			<span class="btn-login" data-astro-cid-5blmo7yk>Aula Virtual</span>
+			<span class="btn-login bg-gray-800" data-astro-cid-5blmo7yk>Aula Virtual</span>
 		</a>
 	</nav>
 	<main class="flex flex-col items-center justify-center pt-0 md:pt-14 box-border min-h-[100vh]">
@@ -65,7 +65,7 @@ import Layout from '../layouts/Layout.astro';
           >
           <button 
             type="submit" 
-            class="w-fit p-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 text-sm md:text-base"
+            class="w-fit p-3 bg-gray-800 text-white rounded hover:bg-gray-600 transition duration-300 text-sm md:text-base"
           >
             Suscribirse
           </button>
@@ -87,9 +87,9 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </section>
     </div>
-    <div class="mx-auto px-8">   
+    <div class="mx-auto px-8 flex justify-center items-center flex-col">   
       <!-- Subsección: Por qué confiar en CCITEC -->
-      <div class="bg-[#007cd2cc] p-8 rounded-lg mb-12 shadow-lg">
+      <div class="bg-gray-800 p-8 rounded-lg mb-12 shadow-lg">
         <h3 class="text-3xl font-semibold text-white text-center mb-6">¿Por qué confiar en CCITEC?</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           <div class="flex flex-col items-center text-center">
@@ -127,40 +127,64 @@ import Layout from '../layouts/Layout.astro';
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <!-- Item -->
         <div class="bg-white p-6 rounded-lg shadow-lg relative">
-          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <div class="absolute inset-x-0 top-0 h-2 bg-gray-800 rounded-t-lg"></div>
           <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Aprendizaje personalizado: </h4>
           <p class="text-gray-700">Combina clases en vivo interactivas con acceso a contenido grabado 24/7, para que aprendas a tu ritmo.</p>
         </div>
         <!-- Item -->
         <div class="bg-white p-6 rounded-lg shadow-lg relative">
-          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <div class="absolute inset-x-0 top-0 h-2 bg-gray-800 rounded-t-lg"></div>
           <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Experiencia práctica: </h4>
           <p class="text-gray-700"> Aplica tus conocimientos a proyectos reales y casos de estudio, con el apoyo de nuestros expertos.</p>
         </div>
         <!-- Item -->
         <div class="bg-white p-6 rounded-lg shadow-lg relative">
-          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <div class="absolute inset-x-0 top-0 h-2 bg-gray-800 rounded-t-lg"></div>
           <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Comunidad de profesionales: </h4>
           <p class="text-gray-700">Conéctate con otros ingenieros y comparte conocimientos en un entorno colaborativo.</p>
         </div>
         <!-- Item -->
         <div class="bg-white p-6 rounded-lg shadow-lg relative">
-          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <div class="absolute inset-x-0 top-0 h-2 bg-gray-800 rounded-t-lg"></div>
           <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Certificación de calidad: </h4>
           <p class="text-gray-700">Obtén un certificado reconocido a nivel nacional que valida tus nuevas competencias.</p>
         </div>
         <!-- Item -->
         <div class="bg-white p-6 rounded-lg shadow-lg relative">
-          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <div class="absolute inset-x-0 top-0 h-2 bg-gray-800 rounded-t-lg"></div>
           <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Acceso a recursos exclusivos:</h4>
           <p class="text-gray-700">Disfruta de materiales de estudio actualizados, software especializado y una plataforma de aprendizaje intuitiva.</p>
         </div>
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-lg shadow-lg relative">
+          <div class="absolute inset-x-0 top-0 h-2 bg-gray-800 rounded-t-lg"></div>
+          <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Inversión rentable:</h4>
+          <p class="text-gray-700">Mejora tus perspectivas laborales y aumenta tu valor en el mercado.</p>
+        </div>
+      </div>
+      <button class="w-fit p-3 bg-gray-800 text-white rounded hover:bg-gray-600 transition duration-300 text-sm md:text-base px-3 mt-4">
+        Empieza Ahora
+      </button>
+    </div>    
+  </main>
+  <footer class="bg-gray-800 text-white py-6 mt-4">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-center md:justify-between items-center space-y-4 md:space-y-0">
+        <div class="flex flex-wrap justify-center space-x-4 md:space-x-6">
+          <a href="#" class="hover:text-blue-500">Inicio</a>
+          <a href="#" class="hover:text-blue-500">Nosotros</a>
+          <a href="#" class="hover:text-blue-500">Cursos</a>
+          <a href="#" class="hover:text-blue-500">Diplomados</a>
+          <a href="#" class="hover:text-blue-500">Contacto</a>
+        </div>
+        <div class="text-center md:text-right">
+          <p class="text-sm">© 2024 CCITEC Perú. Todos los derechos reservados.</p>
+          <p class="text-sm">Hecho con ❤️ por el equipo de CCITEC.</p>
+        </div>
       </div>
     </div>
-    
-    
-        
-  </main>
+  </footer>
+  
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script type="module">
 const e = document.getElementById("controlmenu")
@@ -262,14 +286,14 @@ alert('Hubo un error al procesar tu suscripción.');
 	}
 
 	.btn-login[data-astro-cid-5blmo7yk] {
-		background-color: #007cd2;
+    background-color: #1f2937;
 		padding: .5rem 1rem;
 		color: #fff;
 		border-radius: .5rem
 	}
 
 	.btn-login[data-astro-cid-5blmo7yk]:hover {
-		background-color: #007cd2cc
+		background-color: #4b5563
 	}
 
 	li[data-astro-cid-5blmo7yk]:hover {
