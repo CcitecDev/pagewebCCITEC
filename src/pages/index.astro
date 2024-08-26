@@ -44,8 +44,8 @@ import Layout from '../layouts/Layout.astro';
 			<span class="btn-login" data-astro-cid-5blmo7yk>Aula Virtual</span>
 		</a>
 	</nav>
-	<main class="flex items-center justify-center pt-0 md:pt-14 box-border min-h-[100vh] h-screen">
-    <div class="w-10/12 lg:w-7/12 container mx-auto px-4 flex flex-col items-center justify-center text-center h-full">
+	<main class="flex flex-col items-center justify-center pt-0 md:pt-14 box-border min-h-[100vh]">
+    <div class="w-10/12 lg:w-7/12 container mx-auto px-4 flex flex-col items-center justify-center text-center h-screen">
       <h1 class="text-4xl md:text-7xl font-bold mb-4 leading-tight">
         Impulsa tu carrera con nuestros <span class="text-[#007cd2cc]">cursos especializados</span>
       </h1>
@@ -87,6 +87,105 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </section>
     </div>
+    <div class="mx-auto px-8">
+      <!-- Título -->
+      <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Beneficios de Estudiar con Nosotros</h2>
+      
+      <!-- Subsección: Por qué confiar en CCITEC -->
+      <div class="bg-[#007cd2cc] p-8 rounded-lg mb-12 shadow-lg">
+        <h3 class="text-3xl font-semibold text-white text-center mb-6">¿Por qué confiar en CCITEC?</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div class="flex flex-col items-center text-center">
+            <div class="text-white mb-4">
+              <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 17V21M8 17V21M12 3v18m8-6H4m16 0v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold text-white">Plataforma Web</h4>
+            <p class="text-white">Encuentra en nuestro Aula Virtual los recursos y actividades de forma directa con los aplicativos requeridos, disponible en el momento que requieras.</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="text-white mb-4">
+              <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h2a1 1 0 011 1v10h10V11a1 1 0 011-1h2M9 21h6M4 3h16a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2z"></path>
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold text-white">Calidad</h4>
+            <p class="text-white">Cada programa cuenta con un plantel de docentes nacionales e internacionales con sólida preparación académica y experiencia gerencial.</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="text-white mb-4">
+              <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold text-white">Enseñanza</h4>
+            <p class="text-white">Estudia con los mejores docentes líderes y autoridades en el Sector Eléctrico con un enfoque Nacional e Internacional.</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Subsección: Beneficios adicionales -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-lg shadow-lg relative">
+          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Clases en Vivo</h4>
+          <p class="text-gray-700">Clases presenciales online que a la vez son grabadas.</p>
+        </div>
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-lg shadow-lg relative">
+          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Casuística - Práctica</h4>
+          <p class="text-gray-700">Metodología con total interacción con los mejores ingenieros del sector, brindando las mejores experiencias.</p>
+        </div>
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-lg shadow-lg relative">
+          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Envío de Certificado</h4>
+          <p class="text-gray-700">Inversión incluye envío del certificado/diploma a nivel nacional.</p>
+        </div>
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-lg shadow-lg relative">
+          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Código QR</h4>
+          <p class="text-gray-700">Nuestros Certificados y diplomas tienen registro QR válido para concurso público y privado.</p>
+        </div>
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-lg shadow-lg relative">
+          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Clases Grabadas</h4>
+          <p class="text-gray-700">Acceso a todas las clases grabadas en su aula virtual.</p>
+        </div>
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-lg shadow-lg relative">
+          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Materiales Digitales</h4>
+          <p class="text-gray-700">Acceso a los últimos materiales y software tratado en cada curso o diplomado.</p>
+        </div>
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-lg shadow-lg relative">
+          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Evaluaciones Calificadas</h4>
+          <p class="text-gray-700">Evaluamos su aprendizaje, para siempre llegar al conocimiento que usted requiera.</p>
+        </div>
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-lg shadow-lg relative">
+          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Especialistas Calificados</h4>
+          <p class="text-gray-700">Los mejores especialistas de cada área, con una amplia experiencia en el sector.</p>
+        </div>
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-lg shadow-lg relative">
+          <div class="absolute inset-x-0 top-0 h-2 bg-[#007cd2cc] rounded-t-lg"></div>
+          <h4 class="text-2xl font-bold text-[#007cd2cc] mb-2 mt-4">Aula Virtual</h4>
+          <p class="text-gray-700">Acceso a su aula virtual las 24 horas y sin expiración de tiempo.</p>
+        </div>
+      </div>
+    </div>
+    
+    
+        
   </main>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script type="module">
