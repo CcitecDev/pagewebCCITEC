@@ -1,5 +1,7 @@
 ---
+import {getDocentes} from '../services/getDocentes'
 import Layout from '../layouts/Layout.astro';
+const teachers = await getDocentes();
 ---
 <Layout title="Ccitec Ingenieria">
 	<div id="modal" class="fixed bottom-4 right-4 z-50 max-w-xs w-full bg-white shadow-lg rounded-lg overflow-hidden transition-opacity duration-300 opacity-0">
@@ -88,7 +90,53 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </section>
     </div>
-    <div class="mx-auto px-8 flex justify-center items-center flex-col">   
+    <div class="mx-auto px-8 flex justify-center items-center flex-col">  
+      <!-- Subesccion: Carrousel-->
+      <div class="w-full flex justify-center items-center relative overflow-hidden">
+        <!-- Botón de flecha izquierda -->
+        <button id="prevBtn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 p-4 rounded-[100%] text-white text-base z-10 shadow-lg flex items-center justify-center max-w-12 max-h-12">
+          ←
+        </button>
+      
+        <!-- Carrusel -->
+        <div class="w-[90vw] overflow-hidden">
+          <div id="carousel" class="w-full flex overflow-hidden snap-x snap-mandatory scroll-smooth space-x-6 p-6">
+            {teachers.map((teachers) => (
+              <div class={`w-[28rem] shrink-0 snap-center rounded-xl shadow-xl  m-4 border border-gray-200 flex ${teachers.bgColor}`}>
+                <!-- Imagen a la izquierda -->
+                <div class="w-1/3"> <img src={teachers.img} alt={teachers.name} class="w-full h-auto object-cover rounded-l-xl" /></div>
+                
+                <!-- Información a la derecha -->
+                <div class="p-6 w-2/3">
+                  <div class="flex flex-row">
+                    <!-- Estrellas de rating (hecho directamente con JSX) -->
+                  <div class="text-yellow-500 text-sm flex flex-row">
+                    {'★'.repeat(Math.floor(teachers.rating))}
+                    {'☆'.repeat(5 - Math.floor(teachers.rating))}
+                    <p class={`ml-3 ${teachers.textColor} `}>{teachers.rating}</p>
+                  </div>
+                  <span class={`${teachers.textColor} text-sm ml-4`}>{teachers.reviews} reviews</span>
+                  </div>
+
+                  <h2 class={`text-xl mt-3 font-semibold ${teachers.textColor}`}>{teachers.name}</h2>
+                  <h2 class={`text-[0.6rem] mt-3 w-11/12 ${teachers.textColor}`}>{teachers.job}</h2>
+                  
+                  <!-- Datos adicionales como lista -->
+                  <ul class={`mt-2 ${teachers.textColor} `}>
+                    <li><strong>Experiencia:</strong> {teachers.expertise} años</li>
+                  </ul>
+                  <span class={`text-pretty text-[0.7rem] ${teachers.textColor} line-clamp-6 mt-5 `}>{teachers.cv}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        
+          <!-- Botón de flecha derecha -->
+          <button id="nextBtn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 p-4 rounded-[100%] text-white text-base z-10 shadow-lg flex items-center justify-center max-w-12 max-h-12">
+            →
+          </button>
+        </div>
+        </div>
       <!-- Subsección: Por qué confiar en CCITEC -->
       <div class="bg-gray-800 p-8 rounded-lg mb-12 shadow-lg">
         <h3 class="text-3xl font-semibold text-white text-center mb-6">¿Por qué confiar en CCITEC?</h3>
@@ -290,6 +338,21 @@ form.addEventListener('submit', e => {
         });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const carousel = document.getElementById('carousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    const scrollAmount = carousel.clientWidth;
+
+    prevBtn.addEventListener('click', function() {
+      carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', function() {
+      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  });
   </script>
 </Layout>
 
