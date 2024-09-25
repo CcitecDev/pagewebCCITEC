@@ -1,5 +1,5 @@
 import { db } from '../firebaseConfig';
-import { collection, getDocs, query, orderBy, limit, where, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, limit, where} from 'firebase/firestore';
 
 export async function getNoticias() {
   const noticiasQuery = query(
