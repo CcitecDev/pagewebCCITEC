@@ -1,0 +1,100 @@
+---
+// Importa las funciones necesarias
+import Layout from '../../layouts/Layout.astro';
+import { getNoticias } from '../../services/getNotices';
+import Nav from '../../components/Nav.astro'
+import Footer from '../../components/Footer.astro';
+
+// Esta función generará las rutas estáticas basadas en los slugs
+export async function getStaticPaths() {
+  const noticias = await getNoticias(); // Obtener todas las noticias
+  return noticias.map(({ slug }) => {
+    return {
+      params: { slug }, // Retorna los slugs para generar las rutas
+    };
+  });
+}
+
+// Obtiene las propiedades de la noticia basado en el slug
+const { slug } = Astro.params;
+const noticias = await getNoticias(); // Obtener todas las noticias
+const noticia = noticias.find(n => n.slug === slug); // Buscar la noticia por slug
+
+// Manejar el caso en que la noticia no se encuentre
+if (!noticia) {
+  return null
+}
+
+// Obtener las noticias relacionadas basadas en categorías
+const relatedNoticias = noticias.filter(n => 
+  n.categorias.some(categoria => noticia.categorias.includes(categoria)) && n.slug !== slug
+).slice(0, 3); // Limita a 3 resultados
+
+---
+<Layout title={noticia.titulo}>
+    <Nav></Nav>
+    <main class="flex flex-col pt-20 box-border min-h-[100vh]">
+        <article class="w-full flex flex-col items-center justify-center">
+            <div class="w-full flex flex-col items-center justify-center text-center">
+                <h1 class="w-10/12 lg:w-9/12 text-gray-900 font-semibold text-2xl md:text-3xl mb-4 text-left text-wrap">{noticia.titulo}</h1>
+                <p class="text-sm md:text-base w-10/12 lg:w-9/12 text-gray-500 text-left mb-10">{noticia.paragraph}</p>
+                <div class="w-full flex flex-row justify-around mb-12">
+                    <p class="text-gray-900 text-sm md:text-base">Escritor por: {noticia.autor}</p>
+                    <p class="text-gray-700 text-sm md:text-base">{noticia.fecha} | {noticia.timetoread}</p>
+                </div>
+            </div>
+            <img src={noticia.img} alt={noticia.titulo} class="w-10/12 h-[40vh] object-cover mb-12" />            
+            <p class="text-gray-700 mb-4 w-10/12 lg:w-9/12" set:html={noticia.cuerpo.introduccion}></p>
+            <div class="w-10/12 lg:w-9/12 flex justify-start items-center">
+                <ul class="w-fit box-border p-4 bg-gray-200 rounded-lg">
+                    <p class="text-base font-bold text-gray-900">Indice</p>
+                    {noticia.cuerpo.secciones.map((seccion)=> {
+                        const seccionId = seccion.titulo.replace(/\s+/g, '-').toLowerCase(); // Convertir espacios a guiones
+                        return (
+                          <li class="my-4 text-sm md:text-base hover:underline text-gray-700">
+                            <a href={`#${seccionId}`}>{seccion.titulo}</a>
+                          </li>
+                        );
+                    })} 
+                    <li class="my-4 text-sm md:text-base hover:underline text-gray-700"><a href="#conclusion">Conclusión</a></li>
+                </ul>
+            </div>
+            
+            {noticia.cuerpo.secciones.map((seccion) => {
+              const seccionId = seccion.titulo.replace(/\s+/g, '-').toLowerCase(); // Convertir espacios a guiones
+              return (
+                <div class="w-full flex flex-col items-center justify-center text-center my-3" id={seccionId}>
+                  <h3 class="w-10/12 lg:w-9/12 text-gray-900 font-semibold text-xl md:text-2xl text-left text-wrap my-4">{seccion.titulo}</h3>
+                  <p class="w-10/12 lg:w-9/12 text-gray-700 text-left" set:html={seccion.contenido}></p>
+                </div>
+              );
+            })}
+            <div id="conclusion" class="w-full flex flex-col items-center justify-center text-center mb-12">
+                <h2 class="w-10/12 lg:w-9/12 text-gray-900 font-semibold text-xl md:text-2xl text-left text-wrap my-4">Conclusión</h2>
+                <p class="w-10/12 lg:w-9/12 text-gray-700 text-left">{noticia.cuerpo.conclusion}</p>
+            </div>
+        </article>
+        <section class="my-10 px-4 parallax">
+            <h2 class="text-4xl font-bold text-start text-gray-900 mb-12 p-4 border border-l-4 border-r-0 border-t-0 border-b-0 border-solid border-gray-900">Noticias Relacionadas</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {relatedNoticias.map((Rnoticia, index) => (
+                <div class="bg-gray-100 rounded-lg shadow-md p-4">
+                  <h3 class="text-xl font-semibold mb-2">{Rnoticia.titulo}</h3>
+                  <img src={Rnoticia.img} alt={Rnoticia.titulo} class="w-full h-48 object-cover mb-4 rounded" />
+                  <p class="text-gray-700 mb-4">{Rnoticia.cuerpo.introduccion.substring(0, 200)}{Rnoticia.cuerpo.introduccion.length > 100 ? '...' : ''}</p> <!-- Muestra la introducción en lugar del cuerpo completo -->
+                  <div class="flex w-full justify-center items-center">
+                    <a href={`/blog/${Rnoticia.slug}`} class="inline-block px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-500 transition-colors" > Ver más </a>
+              </div>
+                </div>
+              ))}
+            </div>
+          </section>
+    </main>
+    <Footer></Footer>
+</Layout>
+<style>
+    html {
+        scroll-behavior: smooth;
+        box-sizing: border-box;
+    }
+</style>

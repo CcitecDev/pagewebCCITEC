@@ -1,0 +1,1 @@
+window.addEventListener("scroll",e);window.addEventListener("load",e);function e(){const n=document.querySelectorAll(".parallax"),o=window.innerHeight;n.forEach(t=>{const i=t.getBoundingClientRect().top,l=t.getBoundingClientRect().bottom;i<o-100&&l>100&&t.classList.add("parallax-visible")})}

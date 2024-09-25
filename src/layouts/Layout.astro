@@ -28,6 +28,7 @@ const { title } = Astro.props;
         <link rel="canonical" href="https://ccitecingenieria.web.app/">
         <!-- Favicon -->
         <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <!-- Title -->
         <title>{title}</title>
 	</head>
@@ -41,4 +42,34 @@ const { title } = Astro.props;
 		font-family: "Montserrat", sans-serif;
 		background: #fff;
 	}
+    .parallax {
+      opacity: 0;
+      transform: translateY(100px);
+      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    }
+  /* Cuando el elemento entra en pantalla */
+  .parallax-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 </style>
+<script>
+   // parallax.js
+   window.addEventListener('scroll', checkParallax);
+window.addEventListener('load', checkParallax); // Verificar al cargar la página
+
+function checkParallax() {
+  const elements = document.querySelectorAll('.parallax');
+  const windowHeight = window.innerHeight;
+
+  elements.forEach(element => {
+    const elementTop = element.getBoundingClientRect().top;
+    const elementBottom = element.getBoundingClientRect().bottom;
+
+    // Si el elemento está entrando completamente en pantalla, aplicamos el efecto
+    if (elementTop < windowHeight - 100 && elementBottom > 100) {
+      element.classList.add('parallax-visible');
+    }
+  });
+}
+</script>

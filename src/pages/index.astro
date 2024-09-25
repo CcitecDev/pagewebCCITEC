@@ -1,7 +1,34 @@
 ---
 import {getDocentes} from '../services/getDocentes'
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro';
 const teachers = await getDocentes();
+import { getNoticias } from '../services/getNotices';
+const noticias = await getNoticias();
+// Estado para manejar la visibilidad de las respuestas
+const faqs = [
+  {
+    question: "¿Qué cursos ofrece CCITEC?",
+    answer: "CCITEC ofrece una variedad de cursos especializados en ingeniería eléctrica. Todos son 100% en línea y flexibles para adaptarse a tu ritmo."
+  },
+  {
+    question: "¿Cómo me inscribo a un curso?",
+    answer: "Visita la página del curso que te interesa, selecciona 'Inscribirme', completa el formulario y realiza el pago. Recibirás un correo con los detalles de acceso."
+  },
+  {
+    question: "¿Qué métodos de pago aceptan?",
+    answer: "Aceptamos pagos con tarjeta de crédito (Visa, Mastercard), transferencia bancaria y pago a plazos para algunos cursos."
+  },
+  {
+    question: "¿Recibiré un certificado al finalizar?",
+    answer: "Sí, recibirás un certificado digital al completar exitosamente cualquier curso. Puedes compartirlo en tu perfil profesional."
+  },
+  {
+    question: "¿Ofrecen soporte técnico o académico?",
+    answer: "Sí, ofrecemos soporte durante todo el curso. Nuestros tutores están disponibles para ayudarte con cualquier duda."
+  }
+];
 ---
 <Layout title="Ccitec Ingenieria">
 	<div id="modal" class="fixed bottom-4 right-4 z-50 max-w-xs w-full bg-white shadow-lg rounded-lg overflow-hidden transition-opacity duration-300 opacity-0">
@@ -10,43 +37,8 @@ const teachers = await getDocentes();
     </div>
     <div class="h-1 bg-gray-800 animate-progress"></div>
   </div>
-  
-	
-	<nav class="h-14 flex items-center w-full justify-between fixed top-0 px-4 md:px-8 bg-white shadow-md z-50" data-astro-cid-5blmo7yk>
-		<button class="md:hidden flex items-center" id="controlmenu" aria-label="Menú" data-astro-cid-5blmo7yk>
-			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-astro-cid-5blmo7yk>
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" data-astro-cid-5blmo7yk></path>
-			</svg>
-		</button>
-		<div class="h-full flex items-center md:order-1 order-2" data-astro-cid-5blmo7yk>
-			<img src="/favicon.svg" alt="Icono Ccitec" class="h-10 w-10" data-astro-cid-5blmo7yk>
-		</div>
-		<ul id="menu" class="hidden md:flex md:flex-row flex-col items-center justify-between md:h-full w-full md:w-auto md:space-x-6 [&>li>a]:text-base lg:[&>li>a]:text-sm md:order-2 absolute md:relative top-0 left-0 md:top-0 bg-white md:bg-transparent z-40 h-screen transform transition-transform duration-300 ease-in-out" data-astro-cid-5blmo7yk>
-			<button class="md:hidden absolute bottom-8 right-8" id="closemenu" data-astro-cid-5blmo7yk>
-				<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-astro-cid-5blmo7yk>
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" data-astro-cid-5blmo7yk></path>
-				</svg>
-			</button>
-			<li class="h-full w-full flex items-center justify-center" data-astro-cid-5blmo7yk>
-				<a href="#inicio" data-astro-cid-5blmo7yk>Inicio</a>
-			</li>
-			<li class="h-full w-full  flex items-center justify-center" data-astro-cid-5blmo7yk>
-				<a href="#nosotros" data-astro-cid-5blmo7yk>Nosotros</a>
-			</li>
-			<li class="h-full w-full  flex items-center justify-center" data-astro-cid-5blmo7yk>
-				<a href="/respaldo/matbas" data-astro-cid-5blmo7yk>Cursos</a>
-			</li>
-			<li class="h-full w-full  flex items-center justify-center" data-astro-cid-5blmo7yk>
-				<a href="#diplomados" class="text-lg" data-astro-cid-5blmo7yk>Diplomados</a>
-			</li>
-			<button class="md:hidden h-full flex items-center justify-center" data-astro-cid-5blmo7yk>
-				<a href="/aulavirtual/login" class="btn-login text-lg" data-astro-cid-5blmo7yk>Aula Virtual</a>
-			</button>
-		</ul>
-		<a href="/aulavirtual/login" class="hidden md:flex items-center justify-around text-xs sm:text-sm md:order-3" data-astro-cid-5blmo7yk>
-			<span class="btn-login bg-gray-800" data-astro-cid-5blmo7yk>Aula Virtual</span>
-		</a>
-	</nav>
+	<!-- Nav-->
+   <Nav></Nav>
 	<main class="flex flex-col items-center justify-center pt-0 md:pt-14 box-border min-h-[100vh]">
     <div class="w-10/12 lg:w-7/12 container mx-auto px-4 flex flex-col items-center justify-center text-center h-screen">
       <h1 class="text-4xl md:text-7xl font-bold mb-4 leading-tight">
@@ -91,54 +83,100 @@ const teachers = await getDocentes();
       </section>
     </div>
     <div class="mx-auto px-8 flex justify-center items-center flex-col">  
+      <!-- Subsección: Infinite Slider-->
+      <div class="w-[80vw] md:w-full overflow-hidden px-0 py-10 parallax">
+        <h2 class="text-2xl font-bold text-center text-gray-900 mb-8">Estas empresas nos respaldan</h2>
+        <div class="whitespace-nowrap flex items-center logos-slide">
+          <img class="h-16 md:h-20 mx-6" src="https://i.postimg.cc/XvRKkJ7J/Andina-Energy.png" alt="Andina Energy">
+          <img class="h-16 md:h-20 mx-6" src="https://i.postimg.cc/W30GWvh7/Confipetrol.png" alt="Confipetrol">
+          <img class="h-16 md:h-20 mx-6" src="https://i.postimg.cc/Kcr7tmXG/Electro-Puno.png" alt="Electro Puno">
+          <img class="h-16 md:h-20 mx-6" src="https://i.postimg.cc/RhRcmL16/Osinergmin.png" alt="Osinergmin">
+          <img class="h-16 md:h-20 mx-6" src="https://i.postimg.cc/ZnZrXMNz/Telsen-Ingenieros.png" alt="Telsen Ingenieros">
+        </div>
+      </div>
       <!-- Subesccion: Carrousel-->
-      <div class="w-full flex justify-center items-center relative overflow-hidden">
-        <!-- Botón de flecha izquierda -->
-        <button id="prevBtn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 p-4 rounded-[100%] text-white text-base z-10 shadow-lg flex items-center justify-center max-w-12 max-h-12">
-          ←
-        </button>
-      
+       <!-- Título -->
+      <div class="w-full scroll-smooth parallax" data-speed="0.3">
+        <h2 class="text-4xl font-bold text-start text-gray-900 mb-12 p-4 border border-l-4 border-r-0 border-t-0 border-b-0 border-solid border-gray-900">Conoce a nuestros docentes</h2>
+      </div>
+      <div class="relative w-full flex flex-col items-center overflow-hidden parallax">
         <!-- Carrusel -->
-        <div class="w-[90vw] overflow-hidden">
-          <div id="carousel" class="w-full flex overflow-hidden snap-x snap-mandatory scroll-smooth space-x-6 p-6">
-            {teachers.map((teachers) => (
-              <div class={`w-[28rem] shrink-0 snap-center rounded-xl shadow-xl  m-4 border border-gray-200 flex ${teachers.bgColor}`}>
-                <!-- Imagen a la izquierda -->
-                <div class="w-1/3"> <img src={teachers.img} alt={teachers.name} class="w-full h-auto object-cover rounded-l-xl" /></div>
-                
-                <!-- Información a la derecha -->
-                <div class="p-6 w-2/3">
-                  <div class="flex flex-row">
-                    <!-- Estrellas de rating (hecho directamente con JSX) -->
-                  <div class="text-yellow-500 text-sm flex flex-row">
-                    {'★'.repeat(Math.floor(teachers.rating))}
-                    {'☆'.repeat(5 - Math.floor(teachers.rating))}
-                    <p class={`ml-3 ${teachers.textColor} `}>{teachers.rating}</p>
-                  </div>
-                  <span class={`${teachers.textColor} text-sm ml-4`}>{teachers.reviews} reviews</span>
-                  </div>
+        <div class="w-full md:w-[90vw] overflow-hidden">
+            <div id="carousel" class="max-w-[80vw] md:max-w-[100%] flex overflow-hidden snap-x snap-mandatory scroll-smooth space-x-4 p-4 md:p-6">
+                {teachers.map((teacher, index) => (
+                    <div class="w-full md:max-w-[28rem] shrink-0 snap-center rounded-xl shadow-lg border border-gray-200 bg-white flex flex-col ">
+                      <!-- Imagen -->
+                      <div class="w-full h-[150px] md:h-[300px]">
+                        <img src={teacher.img} alt={teacher.name} class="w-full h-full object-cover rounded-t-xl" />
+                      </div>
+    
+                      <!-- Información -->
+                      <div class="p-3 md:p-4 flex flex-col flex-grow">
+                        <!-- Rating -->
+                        <div class="text-gray-900 mb-1 flex items-center space-x-2">
+                          <div class="text-yellow-500 text-xs flex">
+                            {'★'.repeat(Math.floor(teacher.rating))}
+                            {'☆'.repeat(5 - Math.floor(teacher.rating))}
+                          </div>
+                          <p class="text-gray-700 text-xs">({teacher.rating}) • {teacher.reviews} reviews</p>
+                        </div>
 
-                  <h2 class={`text-xl mt-3 font-semibold ${teachers.textColor}`}>{teachers.name}</h2>
-                  <h2 class={`text-[0.6rem] mt-3 w-11/12 ${teachers.textColor}`}>{teachers.job}</h2>
-                  
-                  <!-- Datos adicionales como lista -->
-                  <ul class={`mt-2 ${teachers.textColor} `}>
-                    <li><strong>Experiencia:</strong> {teachers.expertise} años</li>
-                  </ul>
-                  <span class={`text-pretty text-[0.7rem] ${teachers.textColor} line-clamp-6 mt-5 `}>{teachers.cv}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+                        <!-- Nombre y descripción -->
+                        <div class="flex flex-row items-center">
+                          <span class="mr-1 text-xs md:text-sm font-bold text-gray-900">{teacher.grade}</span>
+                          <p class="text-lg md:text-xl font-bold text-gray-900">{teacher.name}</p>
+                        </div>
+                        <p class="text-gray-600 text-xs mt-1">{teacher.job}</p>
         
-          <!-- Botón de flecha derecha -->
-          <button id="nextBtn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 p-4 rounded-[100%] text-white text-base z-10 shadow-lg flex items-center justify-center max-w-12 max-h-12">
-            →
+                        <!-- Experiencia -->
+                        <ul class="mt-1 text-gray-700 text-xs md:text-sm">
+                          <li><strong class="text-gray-900">Experiencia:</strong> {teacher.expertise} años</li>
+                        </ul>
+        
+                        <!-- Habilidades -->
+                        <strong class="text-gray-900 mt-2 text-xs md:text-sm">Especializaciones:</strong>
+                          <ul class="mt-2 flex flex-wrap gap-1 md:gap-2 text-[0.6rem] md:text-xs">
+                            {teacher.skills.map(skill => (
+                              <li class="bg-gray-800 font-semibold text-white py-1 px-2 rounded-full">{skill}</li>
+                            ))}
+                          </ul>
+
+                        <!-- Programas -->
+                        <strong class="text-gray-900 mt-2 text-xs md:text-sm">Programas que domina:</strong>
+                          <ul class="mt-2 flex flex-wrap gap-1 md:gap-2 text-[0.6rem] md:text-xs">
+                            {teacher.programs.map(program => (
+                              <li class="bg-gray-800 font-semibold text-white py-1 px-2 rounded-full">{program}</li>
+                            ))}
+                          </ul>
+                      </div>
+                    </div>
+
+                ))}
+                
+            </div>   
+        </div>
+        <!-- Contenedor para los botones y el indicador -->
+        <div class="w-[100%] flex items-center space-x-4 my-4 ml-[33%] md:ml-0 md:justify-center">
+          <!-- Botón de flecha izquierda -->
+          <button id="prevBtn" class="bg-gray-800 hover:bg-gray-700 p-2 md:p-4 rounded-[100%] text-white text-base shadow-lg flex items-center justify-center w-12 h-12">
+              ←
           </button>
-        </div>
-        </div>
+  
+          <!-- Indicador visual de posición -->
+          <div class="flex space-x-2">
+              {teachers.map((_, index) => (
+                  <div class={`w-3 h-3 rounded-full bg-gray-400 indicator`}></div>
+              ))}
+          </div>
+  
+          <!-- Botón de flecha derecha -->
+          <button id="nextBtn" class="bg-gray-800 hover:bg-gray-700 p-2 md:p-4 rounded-[100%] text-white text-base shadow-lg flex items-center justify-center w-12 h-12">
+              →
+          </button>
+      </div>
+    </div>      
       <!-- Subsección: Por qué confiar en CCITEC -->
-      <div class="bg-gray-800 p-8 rounded-lg mb-12 shadow-lg">
+      <div class="bg-gray-800 p-8 rounded-lg mb-12 shadow-lg parallax">
         <h3 class="text-3xl font-semibold text-white text-center mb-6">¿Por qué confiar en CCITEC?</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           <div class="flex flex-col items-center text-center">
@@ -171,9 +209,11 @@ const teachers = await getDocentes();
         </div>
       </div>
       <!-- Título -->
-      <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Beneficios de Estudiar con Nosotros</h2>
+      <div class="w-full parallax">
+        <h2 class="text-4xl font-bold text-start text-gray-900 mb-12 p-4 border border-l-4 border-r-0 border-t-0 border-b-0 border-solid border-gray-900">Beneficios de Estudiar con Nosotros</h2>
+      </div>
       <!-- Subsección: Beneficios adicionales -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 parallax">
         <!-- Item -->
         <div class="bg-white p-6 rounded-lg shadow-lg relative">
           <div class="absolute inset-x-0 top-0 h-2 bg-gray-800 rounded-t-lg"></div>
@@ -211,271 +251,249 @@ const teachers = await getDocentes();
           <p class="text-gray-700">Mejora tus perspectivas laborales y aumenta tu valor en el mercado.</p>
         </div>
       </div>
-      <button class="w-fit p-3 bg-gray-800 text-white rounded hover:bg-gray-600 transition duration-300 text-sm md:text-base px-3 mt-4">
+      <button class="w-fit p-3 bg-gray-800 text-white rounded hover:bg-gray-600 transition duration-300 text-sm md:text-base px-3 mt-4 parallax">
         Empieza Ahora
       </button>
-    </div>    
-  </main>
-  <footer class="bg-gray-800 text-white py-6 mt-4">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row justify-center md:justify-between items-center space-y-4 md:space-y-0">
-        <div class="flex flex-wrap justify-center space-x-4 md:space-x-6">
-          <a href="#" class="hover:text-blue-500">Inicio</a>
-          <a href="#" class="hover:text-blue-500">Nosotros</a>
-          <a href="#" class="hover:text-blue-500">Cursos</a>
-          <a href="#" class="hover:text-blue-500">Diplomados</a>
-          <a href="#" class="hover:text-blue-500">Contacto</a>
+      <!-- Subsección: Noticias -->
+      <section class="my-10 px-4 parallax">
+        <h2 class="text-4xl font-bold text-start text-gray-900 mb-12 p-4 border border-l-4 border-r-0 border-t-0 border-b-0 border-solid border-gray-900">Noticias Recientes</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {noticias.map((noticia, index) => (
+            <div class="bg-gray-100 rounded-lg shadow-md p-4">
+              <h3 class="text-xl font-semibold mb-4">{noticia.titulo}</h3>
+              <img src={noticia.img} alt={noticia.titulo} class="w-full h-48 object-cover mb-4 rounded" />
+              <p class="text-gray-700 mb-4">{noticia.cuerpo.introduccion.substring(0, 200)}{noticia.cuerpo.introduccion.length > 100 ? '...' : ''}</p> <!-- Muestra la introducción en lugar del cuerpo completo -->
+              <div class="flex w-full justify-center items-center">
+                <a
+                href={`/blog/${noticia.slug}`}
+                class="inline-block px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-500 transition-colors"
+              >
+                Ver más
+              </a>
+              </div>
+            </div>
+          ))}
         </div>
-        <div class="text-center md:text-right">
-          <p class="text-sm">© 2024 CCITEC Perú. Todos los derechos reservados.</p>
-          <p class="text-sm">Hecho con ❤️ por el equipo de CCITEC.</p>
+      </section>
+      <div class="w-full py-12 parallax">
+        <h2 class="text-4xl font-bold text-start text-gray-900 mb-12 p-4 border border-l-4 border-r-0 border-t-0 border-b-0 border-solid border-gray-900">Preguntas Frecuentes</h2>
+        <div class="space-y-4">
+          {faqs.map((faq, index) => (
+            <div class="bg-white p-6 rounded-lg shadow-lg relative">
+              <div class="absolute inset-x-0 top-0 h-2 bg-gray-800 rounded-t-lg"></div>            
+              <button type="button" class="flex justify-between w-full items-center text-left" aria-controls={`faq${index}`} aria-expanded="false" onclick={`document.getElementById('faq${index}').classList.toggle('hidden')`}>
+                <span class="text-lg font-semibold text-gray-700">{faq.question}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+              </button>
+              <div id={`faq${index}`} class="mt-2 hidden">
+                <p class="text-gray-600">{faq.answer}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
-  </footer>
-  
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </main>
+  <Footer></Footer>
   <script type="module">
-const e = document.getElementById("controlmenu")
-		  , n = document.getElementById("closemenu");
-		function d() {
-			const s = document.getElementById("menu");
-			s && (s.classList.contains("hidden") ? (s.classList.remove("hidden"),
-			s.classList.add("flex"),
-			s.classList.add("animado"),
-			s.classList.remove("desanimado")) : (s.classList.remove("animado"),
-			s.classList.add("desanimado"),
-			setTimeout(function() {
-				s.classList.add("hidden"),
-				s.classList.remove("flex"),
-				s.classList.remove("desanimado"),
-				s.classList.add("visualizado")
-			}, 500)))
-		}
-		e && (e.onclick = d);
-		n && (n.onclick = d);
+    window.onload = function() {
+  const slider = document.querySelector('.logos-slide');
+  const sliderWidth = slider.scrollWidth;
+  let clonedSlider = slider.cloneNode(true);
+  slider.appendChild(clonedSlider);
 
-		document.addEventListener('DOMContentLoaded', () => {
-    const statNumbers = document.querySelectorAll('.stat-number');
+  let currentPosition = 0;
 
-    statNumbers.forEach((stat) => {
-      const finalValue = parseInt(stat.getAttribute('data-number'), 10);
-      let currentValue = 0;
-      const increment = finalValue / 100;
-      const duration = 2000; // Duración total en ms
-      const steps = 100; // Número de pasos de la animación
-      const stepDuration = duration / steps; // Duración de cada paso en ms
+  function animateSlider() {
+    currentPosition -= 1; // Ajusta la velocidad con este valor
+    if (Math.abs(currentPosition) >= sliderWidth) {
+      currentPosition = 0;
+    }
+    slider.style.transform = `translateX(${currentPosition}px)`;
+    requestAnimationFrame(animateSlider);
+  }
 
-      const updateNumber = () => {
-        if (currentValue < finalValue) {
-          currentValue += increment;
-          stat.textContent = Math.floor(currentValue);
-          setTimeout(updateNumber, stepDuration);
-        } else {
-          stat.textContent = finalValue;
-        }
-      };
+  requestAnimationFrame(animateSlider);
+};
+// Stat number animation
+document.addEventListener("DOMContentLoaded", () => {
+  const statNumbers = document.querySelectorAll('.stat-number');
 
-      updateNumber();
-    });
+  statNumbers.forEach((stat) => {
+    const finalValue = parseInt(stat.dataset.number, 10);
+    let currentValue = 0;
+    const increment = finalValue / 100;
+    const duration = 2000; // Duración total en ms
+    const steps = 100; // Número de pasos de la animación
+    const stepDuration = duration / steps;
+
+    const updateNumber = () => {
+      currentValue = Math.min(currentValue + increment, finalValue);
+      stat.textContent = Math.floor(currentValue);
+      if (currentValue < finalValue) setTimeout(updateNumber, stepDuration);
+    };
+
+    updateNumber();
   });
-
-    
-    // Envío del formulario
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwUsHwr2k8zmXCKTkKSNNgwWzouQ1-bcDhhvOioM_xvpD4OTmn2JPyD9nAUSCV_p5ji/exec';
-const form = document.forms['subscription-form'];
-
-form.addEventListener('submit', e => {
-    e.preventDefault();
-
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => response.json()) // Convertir la respuesta a JSON
-        .then(data => {
-            const modal = document.getElementById('modal');
-            const modalMessage = document.getElementById('modal-message');
-
-            if (data.result === 'success') {
-                // Si la suscripción es exitosa
-                modalMessage.textContent = '¡Suscripción exitosa! Gracias por suscribirte.';
-            } else if (data.result === 'error' && data.message === 'Email already subscribed') {
-                // Si el correo ya está suscrito
-                modalMessage.textContent = 'Ya estás suscrito con este correo.';
-            } else {
-                // Otro tipo de error
-                modalMessage.textContent = 'Hubo un error al procesar tu suscripción.';
-            }
-
-            // Mostrar el modal
-            modal.style.display = 'block';
-            modal.style.opacity = '1';
-
-            // Desaparecer el modal después de 3 segundos
-            setTimeout(() => {
-                modal.style.opacity = '0';
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                }, 300);
-            }, 3000);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            const modal = document.getElementById('modal');
-            const modalMessage = document.getElementById('modal-message');
-
-            modalMessage.textContent = 'Hubo un error al procesar tu suscripción.';
-            
-            // Mostrar el modal
-            modal.style.display = 'block';
-            modal.style.opacity = '1';
-
-            // Desaparecer el modal después de 3 segundos
-            setTimeout(() => {
-                modal.style.opacity = '0';
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                }, 300);
-            }, 3000);
-        });
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    const carousel = document.getElementById('carousel');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+// Form submission
+const form = document.forms['subscription-form'];
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwUsHwr2k8zmXCKTkKSNNgwWzouQ1-bcDhhvOioM_xvpD4OTmn2JPyD9nAUSCV_p5ji/exec';
 
-    const scrollAmount = carousel.clientWidth;
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
 
-    prevBtn.addEventListener('click', function() {
-      carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    });
+  fetch(scriptURL, {
+    method: 'POST',
+    body: new FormData(form)
+  })
+    .then(response => response.json())
+    .then(data => handleFormResponse(data))
+    .catch(error => handleFormError(error));
+});
 
-    nextBtn.addEventListener('click', function() {
-      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    });
+function handleFormResponse(data) {
+  const modal = document.getElementById('modal');
+  const modalMessage = document.getElementById('modal-message');
+
+  if (data.result === 'success') {
+    modalMessage.textContent = '¡Suscripción exitosa! Gracias por suscribirte.';
+  } else if (data.result === 'error' && data.message === 'Email already subscribed') {
+    modalMessage.textContent = 'Ya estás suscrito con este correo.';
+  } else {
+    modalMessage.textContent = 'Hubo un error al procesar tu suscripción.';
+  }
+
+  showModal(modal);
+}
+
+function handleFormError(error) {
+  console.error('Error:', error);
+  const modal = document.getElementById('modal');
+  const modalMessage = document.getElementById('modal-message');
+  modalMessage.textContent = 'Hubo un error al procesar tu suscripción.';
+  showModal(modal);
+}
+
+function showModal(modal) {
+  modal.style.display = 'block';
+  modal.style.opacity = '1';
+
+  setTimeout(() => {
+    modal.style.opacity = '0';
+    setTimeout(() => {
+      modal.style.display = 'none';
+    }, 300);
+  }, 3000);
+}
+
+// Carousel control
+const carousel = document.getElementById('carousel');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const indicators = document.querySelectorAll('.indicator');
+let currentIndex = 0;
+
+function updateIndicators() {
+  indicators.forEach((indicator, index) => {
+    indicator.classList.toggle('bg-gray-800', index === currentIndex);
+    indicator.classList.toggle('bg-gray-400', index !== currentIndex);
   });
+}
+
+function moveCarousel(index) {
+  const slideWidth = carousel.children[0].offsetWidth + 24; // Ajuste del espacio entre slides
+  carousel.scrollTo({
+    left: index * slideWidth,
+    behavior: 'smooth',
+  });
+  updateIndicators();
+}
+
+nextBtn.addEventListener('click', () => {
+  if (currentIndex < carousel.children.length - 1) {
+    currentIndex++;
+    moveCarousel(currentIndex);
+  }
+});
+
+prevBtn.addEventListener('click', () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    moveCarousel(currentIndex);
+  }
+});
+
+// Initialize indicators
+updateIndicators();
   </script>
 </Layout>
-
 <style>
-	[data-astro-cid-5blmo7yk] {
-		animation-delay: .25s
-	}
+/* Ajustes para el layout */
+main[data-astro-cid-37pmanjv] {
+  min-height: 100vh;
+}
 
-	nav[data-astro-cid-5blmo7yk] {
-		background-color: #fafafa80;
-		-webkit-backdrop-filter: blur(2px);
-		backdrop-filter: blur(2px)
-	}
+/* Tarjetas de estadísticas */
+.stat-card {
+  text-align: center;
+  flex: 1;
+}
 
-	.btn-login[data-astro-cid-5blmo7yk] {
-    background-color: #1f2937;
-		padding: .5rem 1rem;
-		color: #fff;
-		border-radius: .5rem
-	}
+.stat-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: rgba(0, 124, 210, 0.8);
+}
 
-	.btn-login[data-astro-cid-5blmo7yk]:hover {
-		background-color: #4b5563
-	}
+.stat-label {
+  font-size: 1rem;
+  color: #333;
+}
 
-	li[data-astro-cid-5blmo7yk]:hover {
-		text-decoration: underline
-	}
-
-	ul[data-astro-cid-5blmo7yk].desanimado {
-		animation: fade-out .5s forwards
-	}
-
-	ul[data-astro-cid-5blmo7yk].animado {
-		animation: fade-in .5s forwards
-	}
-
-	ul[data-astro-cid-5blmo7yk].visualizado {
-		opacity: 1
-	}
-
-	@keyframes fade-in {
-		0% {
-			opacity: 0
-		}
-
-		to {
-			opacity: 1
-		}
-	}
-
-	@keyframes fade-out {
-		0% {
-			opacity: 1
-		}
-
-		to {
-			opacity: 0
-		}
-	}
-
-	main[data-astro-cid-37pmanjv] {
-		min-height: 100vh
-	}
-
-	.stat-card {
-    text-align: center;
-    flex: 1; /* Makes sure each stat card takes equal space */
+/* Responsivo para dispositivos pequeños */
+@media (max-width: 640px) {
+  .stat-card {
+    width: 100%;
   }
 
   .stat-number {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #007cd2cc;
+    font-size: 2.2rem;
   }
 
   .stat-label {
-    font-size: 1rem;
-    color: #333;
+    font-size: 0.75rem;
   }
+}
 
-  @media (max-width: 640px) {
-    .stat-card {
-      width: 100%;
-    }
+/* Modal */
+#modal {
+  opacity: 0;
+  display: none;
+  transition: opacity 0.3s ease;
+}
 
-    .stat-card:nth-child(-n+2) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .stat-number {
-      font-size: 2.2rem;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-    }
-  }
-
+@media (max-width: 640px) {
   #modal {
-    opacity: 0;
-    display: none;
+    bottom: 2rem;
+    right: 1rem;
   }
+}
 
-  .animate-progress {
-    animation: progress 3s linear;
-  }
+/* Animación de progreso */
+.animate-progress {
+  animation: progress 3s linear;
+}
 
-  @keyframes progress {
-    from {
-      width: 0%;
-    }
-    to {
-      width: 100%;
-    }
+@keyframes progress {
+  from {
+    width: 0%;
   }
-
-  @media (max-width: 640px) {
-    #modal {
-      bottom: 2rem;
-      right: 1rem;
-    }
+  to {
+    width: 100%;
   }
+}
 </style>
