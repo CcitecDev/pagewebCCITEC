@@ -16,7 +16,6 @@ const firebaseConfig = {
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
 let analytics;
 
 // Verifica si se puede usar Analytics en el entorno actual

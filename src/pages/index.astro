@@ -1,11 +1,33 @@
 ---
-import {getDocentes} from '../services/getDocentes'
+import { getDocentes } from '../services/getData';
+import { getOnNoticias } from '../services/getData';
 import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro'
+import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-const teachers = await getDocentes();
-import { getNoticias } from '../services/getNotices';
-const noticias = await getNoticias();
+
+// Obtén docentes y noticias
+// Estado para almacenar docentes
+let teachers = [];
+
+// Obtener docentes
+getDocentes((data) => {
+  teachers = data;
+});
+
+// Estado para almacenar noticias
+let noticias = []; // Inicializa un array para las noticias
+
+// Obtener noticias
+const noticiasPromise = new Promise((resolve) => {
+  getOnNoticias((data) => {
+    noticias = data; // Asignar las noticias obtenidas al array noticias
+    resolve(noticias); // Resolver la promesa
+  });
+});
+
+// Esperar a que ambas promesas se resuelvan
+await Promise.all([noticiasPromise]);
+
 // Estado para manejar la visibilidad de las respuestas
 const faqs = [
   {
